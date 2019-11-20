@@ -42,7 +42,7 @@ class Topbar extends Component {
             >
               <LinkContainer to='/issues'><Dropdown.Item as="button">Issues</Dropdown.Item></LinkContainer>
               <LinkContainer to='/projects'><Dropdown.Item as="button">Projects</Dropdown.Item></LinkContainer>
-              <LinkContainer to='/team'><Dropdown.Item as="button">Team Members</Dropdown.Item></LinkContainer>
+              <LinkContainer to='/users'><Dropdown.Item as="button">Team Members</Dropdown.Item></LinkContainer>
               <Dropdown.Divider />
               {
                 this.props.user &&

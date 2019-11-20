@@ -34,7 +34,6 @@ class Projects extends Component {
   }
 
   render () {
-    console.log(this.state.projects)
     return (
       <Container fluid>
         <Breadcrumb>

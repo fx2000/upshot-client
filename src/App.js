@@ -30,6 +30,8 @@ import Projects from './pages/projects/Projects';
 import CreateProject from './pages/projects/CreateProject';
 import ViewProject from './pages/projects/ViewProject';
 import UpdateProject from './pages/projects/UpdateProject';
+import Users from './pages/users/Users';
+import ViewUser from './pages/users/ViewUser';
 
 // Firebase
 import firebase from 'firebase';
@@ -65,6 +67,8 @@ class App extends Component {
                 <PrivateRoute exact path="/projects/create" component={CreateProject} />
                 <PrivateRoute exact path="/projects/:id" component={ViewProject} />
                 <PrivateRoute exact path="/projects/:id/update" component={UpdateProject} />
+                <PrivateRoute exact path="/users" component={Users} />
+                <PrivateRoute exact path="/users/:id" component={ViewUser} />
               </Switch>
             </Col>
           </Row>

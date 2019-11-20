@@ -3,6 +3,8 @@ import projects from '../../lib/project-service';
 import { withAuth } from '../../lib/AuthProvider';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+
+// Components
 import ProjectIssues from '../../components/project/ProjectIssues';
 
 // Bootstrap Components
@@ -45,7 +47,6 @@ class ViewProject extends Component {
         update = true;
       }
     }
-    console.log(this.state.project.issues)
 
     return (
       <Container fluid>
@@ -56,10 +57,17 @@ class ViewProject extends Component {
         </Breadcrumb>
         <Row className="controls">
           <h2>{this.state.project.name}</h2>
-          {
-            this.state.project && update ?
-              <LinkContainer to={'/projects/' + this.state.project._id + '/update'}><Button variant="upshot">Update Project</Button></LinkContainer> : null
-          }
+          <div>
+            {
+              this.state.project && update ?
+                <LinkContainer to={'/projects/' + this.state.project._id + '/update'}><Button variant="upshot">Update</Button></LinkContainer> : null
+            }
+            {
+              // TODO: Add a confirmation message when deleting a record
+              this.state.project && update ?
+                <Button variant="danger" onClick={() => projects.delete(this.state.project._id)}>Delete</Button> : null
+            }
+          </div>
         </Row>
         <Row>
           <Container fluid>

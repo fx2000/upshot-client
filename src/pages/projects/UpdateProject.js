@@ -36,9 +36,16 @@ class UpdateProject extends Component {
     const {
       id,
       name,
-      description,
-      imageURL
+      description
     } = this.state;
+
+    let { imageURL } = this.state;
+
+    if (this.state.image) {
+      if (imageURL === '') {
+        imageURL = this.state.image;
+      }
+    }
 
     projects.update({
       id,
@@ -116,7 +123,6 @@ class UpdateProject extends Component {
     const {
       name,
       description,
-      image,
       errors
     } = this.state;
 
@@ -154,7 +160,8 @@ class UpdateProject extends Component {
               <Form.Group controlId = "description" >
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                  type = "text"
+                  as = "textarea"
+                  rows = "5"
                   name = "description"
                   value = { description }
                   onChange = { this.handleChange }

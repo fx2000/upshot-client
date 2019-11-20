@@ -160,7 +160,7 @@ class CreateIssue extends Component {
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   as="textarea"
-                  rows="10"
+                  rows="6"
                   name="content"
                   value={content}
                   onChange={this.handleChange}
@@ -229,8 +229,8 @@ class CreateIssue extends Component {
             </Form>
         </Modal.Body>
         <Modal.Footer>
-          <LinkContainer to="/issues"><Button variant="primary" size="lg">Cancel</Button></LinkContainer>
-          <Button variant="upshot" size="lg" type="submit" form="createIssue" disabled={!title || !content}>Submit</Button>
+          <LinkContainer to="/issues"><Button variant="primary" size="sm">Cancel</Button></LinkContainer>
+          <Button variant="upshot" size="sm" type="submit" form="createIssue" disabled={!title || !content}>Submit</Button>
         </Modal.Footer>
       </Modal.Dialog>
       </Container>

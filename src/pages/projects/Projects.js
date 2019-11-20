@@ -34,6 +34,7 @@ class Projects extends Component {
   }
 
   render () {
+    console.log(this.state.projects)
     return (
       <Container fluid>
         <Breadcrumb>
@@ -45,14 +46,15 @@ class Projects extends Component {
           <LinkContainer to="/projects/create"><Button variant="upshot">Create Project</Button></LinkContainer>
         </Row>
         <Row>
-          <Table responsive className="table">
+          <Table responsive className="table" striped hover>
             <thead>
               <tr>
                 <th></th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Issues</th>
-                <th>Creator</th>
+                <th>Owner</th>
+                <th>Created</th>
               </tr>
             </thead>
             <tbody>
@@ -67,6 +69,7 @@ class Projects extends Component {
                     creatorName = { project.creator.firstName + ' ' + project.creator.lastName}
                     creatorId = { project.creator._id }
                     issues = {project.issues.length}
+                    created = { project.relativeDate }
                   />
                 )
               }

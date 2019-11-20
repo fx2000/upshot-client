@@ -12,7 +12,7 @@ import {
   Alert,
   Breadcrumb,
   Container,
-  Row
+  Modal
 } from 'react-bootstrap';
 
 class CreateProject extends Component {
@@ -103,18 +103,23 @@ class CreateProject extends Component {
     return (
       <Container fluid>
         <Breadcrumb>
-          <LinkContainer to = "/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-          <LinkContainer to = "/projects"><Breadcrumb.Item>Projects</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
           <Breadcrumb.Item active>Create Project</Breadcrumb.Item>
         </Breadcrumb>
-        <Row>
-          <h2>Create Project</h2>
-        </Row>
-        <Row>
-          <Form onSubmit = { this.handleFormSubmit }>
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Create Project</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <Form onSubmit = { this.handleFormSubmit } id="createProject">
             { /* Display uploaded image */ }
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-            {this.state.imageURL && <img src={this.state.imageURL} alt="File upload"/>}
+            {
+              this.state.imageURL &&
+                <img src={this.state.imageURL} alt="File upload" className="project-upload" />
+            }
 
             <Form.Group controlId = "name" >
               <Form.Label>Name</Form.Label>
@@ -130,7 +135,8 @@ class CreateProject extends Component {
             <Form.Group controlId = "description" >
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type = "text"
+                as = "textarea"
+                rows = "5"
                 name = "description"
                 value = { description }
                 onChange = { this.handleChange }
@@ -162,11 +168,13 @@ class CreateProject extends Component {
             
             {errors && (<Alert variant="danger" dismissible><p>{errors}</p></Alert>)}
 
-            <Button variant="primary" type="submit" disabled = { !name || !description }>
-              Submit
-            </Button>
           </Form>
-        </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <LinkContainer to="/projects"><Button variant="primary" size="sm">Cancel</Button></LinkContainer>
+            <Button variant="upshot" size="sm" type="submit" form="createProject" disabled={!name || !description}>Submit</Button>
+          </Modal.Footer>
+        </Modal.Dialog>
       </Container>
     );
   }

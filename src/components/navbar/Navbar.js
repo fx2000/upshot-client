@@ -21,8 +21,8 @@ class Topbar extends Component {
             <img
               alt=""
               src="assets/img/arrow.png"
-              width="50"
-              height="50"
+              width="25"
+              height="25"
               className="d-inline-block align-top"
             />{' '}
             <span className="brand-name">upshot</span>
@@ -36,7 +36,7 @@ class Topbar extends Component {
             <DropdownButton
               id="dropdown-item-button"
               title={<FontAwesomeIcon icon={faUser} />}
-              size="lg"
+              size="sm"
               variant="upshot"
               alignRight
             >

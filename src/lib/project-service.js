@@ -34,12 +34,14 @@ class ProjectService {
     const {
       id,
       name,
-      description
+      description,
+      imageURL
     } = project;
     return this.project
       .put('/api/projects/' + id + '/update', {
         name,
-        description
+        description,
+        imageURL
       }).then(
         response => response
       );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import projects from '../../lib/project-service';
 import { withAuth } from '../../lib/AuthProvider';
+import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProjectIssues from '../../components/project/ProjectIssues';
 
@@ -71,7 +72,8 @@ class ViewProject extends Component {
                   <Row>
                     <Container>
                       <h5>Created { this.state.project.relativeDate } by {
-                        this.state.project.creator && this.state.project.creator.firstName + ' ' + this.state.project.creator.lastName
+                        this.state.project.creator &&
+                        <Link to={'/users/' + this.state.project.creator._id}>this.state.project.creator.firstName + ' ' + this.state.project.creator.lastName</Link>
                       }
                       </h5>
                       <h6>Issues: { this.state.project.issues && this.state.project.issues.length }</h6>

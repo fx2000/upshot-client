@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withAuth } from '../../lib/AuthProvider';
 import projects from '../../lib/project-service';
 import { LinkContainer } from 'react-router-bootstrap';
+import firebase from 'firebase';
+import FileUploader from "react-firebase-file-uploader";
 
 // Bootstrap Components
 import {
@@ -10,7 +12,7 @@ import {
   Alert,
   Breadcrumb,
   Container,
-  Row
+  Modal
 } from 'react-bootstrap';
 
 class UpdateProject extends Component {

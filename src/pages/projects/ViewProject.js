@@ -73,7 +73,7 @@ class ViewProject extends Component {
                     <Container>
                       <h5>Created { this.state.project.relativeDate } by {
                         this.state.project.creator &&
-                        <Link to={'/users/' + this.state.project.creator._id}>this.state.project.creator.firstName + ' ' + this.state.project.creator.lastName</Link>
+                        <Link to={'/users/' + this.state.project.creator._id}>{this.state.project.creator.firstName + ' ' + this.state.project.creator.lastName}</Link>
                       }
                       </h5>
                       <h6>Issues: { this.state.project.issues && this.state.project.issues.length }</h6>

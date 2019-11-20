@@ -134,6 +134,12 @@ class UpdateProject extends Component {
 
             <Modal.Body>
               <Form onSubmit={this.handleFormSubmit} id="updateProject">
+              { /* Display uploaded image */ }
+              {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+              {
+                this.state.imageURL &&
+                  <img src={this.state.imageURL} alt="File upload" className="project-upload" />
+              }
               <Form.Group controlId = "name" >
                 <Form.Label>Name</Form.Label>
                 <Form.Control

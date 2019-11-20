@@ -24,6 +24,7 @@ class ViewIssue extends Component {
   }
 
   componentDidMount = () => {
+    // Call issue details API
     const { id } = this.props.match.params;
     issues.details(id).then(
       response => {
@@ -86,37 +87,36 @@ class ViewIssue extends Component {
     }
     
     return (
-      <Container fluid={true}>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Issue Details</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
-        <Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Issue Details</Breadcrumb.Item>
+        </Breadcrumb>
+        <Row className="controls">
+          {/* Render buttons according to user's profile */}
           <h2>{this.state.issue.title}</h2>
+          <div>
+            {
+              this.state.issue && update ?
+                <LinkContainer to={'/issues/' + this.state.issue._id + '/update'}><Button variant="upshot">Update</Button></LinkContainer> : null
+            }
+            {
+              this.state.issue && following ?
+                <Button onClick={this.unfollowIssue} variant="upshot">Unfollow</Button> : <Button onClick={this.followIssue} variant="upshot">Follow</Button>
+            }
+            {
+              this.state.issue && assigned ?
+                <Button onClick={this.releaseIssue} variant="upshot">Release</Button> : <Button onClick={this.takeoverIssue} variant="upshot">Takeover</Button>
+            }
+          </div>
+          
         </Row>
-        {/* Render buttons according to user's profile */}
         <Row>
-          {
-            this.state.issue && update ?
-              <LinkContainer to={'/issues/' + this.state.issue._id + '/update'}><Button>Update</Button></LinkContainer> : null
-          }
-          {
-            this.state.issue && following ?
-              <Button onClick={this.unfollowIssue}>Unfollow</Button> : <Button onClick={this.followIssue}>Follow</Button>
-          }
-          {
-            this.state.issue && assigned ?
-              <Button onClick={this.releaseIssue}>Release</Button> : <Button onClick={this.takeoverIssue}>Takeover</Button>
-          }
-        </Row>
-        <Row>
-          <Container fluid={true}>
+          <Container fluid>
             <Tabs defaultActiveKey="details" id="uncontrolled-tab-example" className="details">
               <Tab eventKey="details" title="Details">
-                <Container fluid={true} className="issue-details">
+                <Container fluid className="issue-details">
                   <Row>
                     {this.state.issue.content}
                   </Row>
@@ -136,14 +136,14 @@ class ViewIssue extends Component {
                 </Container>
               </Tab>
               <Tab eventKey="comments" title="Comments">
-                <Container fluid={true} className="issue-details">
+                <Container fluid className="issue-details">
                   <Row>
                     <LinkContainer to={'/issues/' + this.state.issue._id + '/comment'}>
                       <Button>Post New Comment</Button>
                     </LinkContainer>
                   </Row>
                   <Row>
-                    <Container fluid={true} className="comments">
+                    <Container fluid className="comments">
                       {
                         this.state.issue.comments &&
                         this.state.issue.comments.map((comment, index) =>

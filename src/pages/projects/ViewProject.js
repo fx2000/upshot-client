@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import projects from '../../lib/project-service';
 import { withAuth } from '../../lib/AuthProvider';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router-dom';
 import ProjectIssues from '../../components/project/ProjectIssues';
 
 // Bootstrap Components
@@ -12,14 +11,15 @@ import {
   Breadcrumb,
   Container,
   Row,
-  Button
+  Button,
+  Table
 } from 'react-bootstrap';
 
 class ViewProject extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      project: {}
+      project: ''
     };
   }
 
@@ -37,59 +37,92 @@ class ViewProject extends Component {
   }
 
   render () {
+    // Check user properties to define button rendering
+    let update = false;
+    if (this.state.project) {
+      if (this.props.user._id === this.state.project.creator._id) {
+        update = true;
+      }
+    }
+    console.log(this.state.project.issues)
+
     return (
-      <Container fluid={true}>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <LinkContainer to="/projects"><Breadcrumb.Item>Projects</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Project Details</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
-        <Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to="/projects"><Breadcrumb.Item>Projects</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Project Details</Breadcrumb.Item>
+        </Breadcrumb>
+        <Row className="controls">
           <h2>{this.state.project.name}</h2>
+          {
+            this.state.project && update ?
+              <LinkContainer to={'/projects/' + this.state.project._id + '/update'}><Button variant="upshot">Update Project</Button></LinkContainer> : null
+          }
         </Row>
         <Row>
-          <Link to={ '/projects/' + this.state.project._id + '/update' }>Update Project</Link>
-        </Row>
-        <Row>
-          <Container fluid={true}>
+          <Container fluid>
             <Tabs defaultActiveKey="details" id="uncontrolled-tab-example" className="details">
               <Tab eventKey="details" title="Details">
-                <Container fluid={true} className="project-details">
+                <Container fluid className="project-details">
                   <Row>
                     <img src={this.state.project.image} alt={this.state.project.name} className="project-image"/>
                   </Row>
                   <Row>
-                    <ul>
-                      <li>Creator: {
+                    <Container>
+                      <h5>Created { this.state.project.relativeDate } by {
                         this.state.project.creator && this.state.project.creator.firstName + ' ' + this.state.project.creator.lastName
-                      }</li>
-                      <li>Creation Date: { this.state.project.createdAt }</li>
-                      <li>Issues: { this.state.project.issues && this.state.project.issues.length }</li>
-                    </ul>
+                      }
+                      </h5>
+                      <h6>Issues: { this.state.project.issues && this.state.project.issues.length }</h6>
+                      <p>{ this.state.project.description }</p>
+                    </Container>
                   </Row>
                 </Container>
               </Tab>
               <Tab eventKey="issues" title="Issues">
-                <Container fluid = { true } className="comments">
+                <Container fluid className="comments">
                   <Row>
                     <LinkContainer to = { '/issues/create/' + this.state.project._id }>
-                      <Button>Create New Issue</Button>
+                      <Button variant="upshot">Create New Issue</Button>
                     </LinkContainer>
                   </Row>
-                  <Row>
-                    <ul>
-                      {
-                        this.state.project.issues && this.state.project.issues.map((issue, index) =>
-                          <ProjectIssues
-                            id = { issue._id }
-                            key = { index }
-                            title = { issue.title }
-                          />
-                        )
-                      }
-                    </ul>
+                  <Row className="project-issues">
+                    {
+                      this.state.project.issues &&
+                      <Table responsive className="table">
+                        <thead>
+                          <tr>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Creator</th>
+                            <th>Followers</th>
+                            <th>Comments</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            this.state.project.issues &&
+                            this.state.project.issues.map((issue, index) =>
+                              <ProjectIssues
+                                key = { index }
+                                id = { issue._id }
+                                priority = { issue.priority }
+                                status = {issue.status}
+                                title = { issue.title }
+                                description = { issue.content }
+                                creatorId = { issue.creator._id }
+                                creatorName = { issue.creator.firstName + ' ' + issue.creator.lastName}
+                                followers = { issue.followers.length }
+                                comments = { issue.comments.length }
+                              />
+                            )
+                          }
+                        </tbody>
+                      </Table>
+                    }
                   </Row>
                 </Container>
               </Tab>

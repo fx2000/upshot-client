@@ -1,11 +1,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 html {
@@ -18,11 +18,15 @@ code {
 }
 
 .main {
+  padding-top: 20px;
 }
 
 .sidebar {
-  height: 100vh;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: slategray;
+  top: 0;
+  left: 0;
+  position: fixed;
+  min-height: calc(100vh - 80px);
 }
 
 .table {
@@ -39,13 +43,19 @@ code {
 }
 
 .project-image {
-  padding-right: 20px;
+  padding-right: 30px;
   height: 200px;
   width: auto;
 }
 
 .project-details {
   padding-top: 15px;
+  display: flex;
+}
+
+.project-issues ul {
+  list-style-type: none;
+  padding: 0px;
 }
 
 .issue-details {
@@ -56,13 +66,6 @@ code {
   margin-top: 20px;
 }
 
-.side {
-  background-color: slategray;
-  top: 0;
-  left: 0;
-  position: fixed;
-}
-
 .navbar {
   padding: .5rem 1rem 0 1rem;
 }
@@ -70,4 +73,26 @@ code {
 .attachment>img {
   height: 100px;
   max-width: auto;
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.btn-upshot {
+  background-color: #FF6600 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+
+.subtitle {
+  font-weight: bold;
+  font-size: 1.2rem;
 }

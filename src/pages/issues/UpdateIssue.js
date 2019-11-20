@@ -103,15 +103,13 @@ class UpdateIssue extends Component {
     } = this.state;
 
     return (
-      <Container fluid = { true }>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
-            <LinkContainer to={'/issues/' + this.state.id}><Breadcrumb.Item>{this.state.title}</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Update Issue</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to={'/issues/' + this.state.id}><Breadcrumb.Item>{this.state.title}</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Update Issue</Breadcrumb.Item>
+        </Breadcrumb>
         <Row>
           <h2>Update Issue</h2>
         </Row>

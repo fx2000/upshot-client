@@ -11,7 +11,6 @@ const Issue = (props) => {
       <td>{ props.description }</td>
       <td><Link to={'/projects/' + props.projectId}>{ props.projectName }</Link></td>
       <td><Link to={'/users/' + props.creatorId}>{ props.creatorName }</Link></td>
-      <td>{ props.assignedTo }</td>
       <td>{ props.followers }</td>
       <td>{ props.comments }</td>
     </tr>

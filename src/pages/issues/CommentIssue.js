@@ -54,14 +54,12 @@ class CommentIssue extends Component {
     } = this.state;
 
     return (
-      <Container fluid = { true }>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to = "/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <LinkContainer to = "/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Post Comment</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to = "/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to = "/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Post Comment</Breadcrumb.Item>
+        </Breadcrumb>
         <Row>
           <h2>Post Comment</h2>
         </Row>

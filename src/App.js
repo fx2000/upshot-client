@@ -18,6 +18,7 @@ import {
 } from 'react-bootstrap';
 
 // Pages
+import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Issues from './pages/issues/Issues';
@@ -33,9 +34,9 @@ import UpdateProject from './pages/projects/UpdateProject';
 // Firebase
 import firebase from 'firebase';
 const config = {
-  apiKey: 'AIzaSyDe4FigH9fqoAhpMTO2AqQ9B0qpsV3tHus',
-  authDomain: 'localhost',
-  storageBucket: 'gs://upshot-its.appspot.com'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET
 };
 firebase.initializeApp(config);
 
@@ -44,15 +45,16 @@ class App extends Component {
     return (
       <AuthProvider>
         <Navbar />
-        <Container fluid={true} className="main">
+        <Container fluid>
           <Row>
             <Col sm={2} className="sidebar">
               <Sidebar />
             </Col>
-            <Col sm={10}>
+            <Col sm={10} className="main">
               <Switch>
                 <AnonRoute exact path="/signup" component={Signup} />
                 <AnonRoute exact path="/login" component={Login} />
+                <PrivateRoute exact path="/" component={Dashboard} />
                 <PrivateRoute exact path="/issues" component={Issues} />
                 <PrivateRoute exact path="/issues/create" component={CreateIssue} />
                 <PrivateRoute exact path="/issues/create/:id" component={CreateIssue} />

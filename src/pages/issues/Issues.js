@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import issues from '../../lib/issue-service';
 import IssueListItem from '../../components/issue/IssueListItem';
-import { Link } from 'react-router-dom';
 import { withAuth } from '../../lib/AuthProvider';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -10,7 +9,8 @@ import {
   Breadcrumb,
   Container,
   Row,
-  Table
+  Table,
+  Button
 } from 'react-bootstrap';
 
 class Issues extends Component {
@@ -34,20 +34,17 @@ class Issues extends Component {
 
   render () {
     return (
-      <Container fluid={true}>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Issues</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
-        <Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Issues</Breadcrumb.Item>
+        </Breadcrumb>
+        <Row className="controls">
           <h2>Issues</h2>
+          <LinkContainer to="/issues/create"><Button variant="upshot">Create Issue</Button></LinkContainer>
         </Row>
         <Row>
-          <Link to="/issues/create">Create Issue</Link>
-        </Row>
-        <Row>
+          { /* Add "Assigned To" column */}
           <Table responsive className="table">
             <thead>
               <tr>
@@ -57,7 +54,6 @@ class Issues extends Component {
                 <th>Description</th>
                 <th>Project</th>
                 <th>Creator</th>
-                <th>Assigned To</th>
                 <th>Followers</th>
                 <th>Comments</th>
               </tr>
@@ -76,7 +72,6 @@ class Issues extends Component {
                     projectName = { issue.project.name }
                     creatorId = { issue.creator._id }
                     creatorName = { issue.creator.firstName + ' ' + issue.creator.lastName}
-                    assignedTo = { issue.assignedTo.firstName + ' ' + issue.assignedTo.lastName }
                     followers = { issue.followers.length }
                     comments = { issue.comments.length }
                   />

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import projects from '../../lib/project-service';
 import ProjectListItem from '../../components/project/ProjectListItem';
-import { Link } from 'react-router-dom';
 import { withAuth } from '../../lib/AuthProvider';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -10,7 +9,8 @@ import {
   Breadcrumb,
   Container,
   Row,
-  Table
+  Table,
+  Button
 } from 'react-bootstrap';
 
 class Projects extends Component {
@@ -35,18 +35,14 @@ class Projects extends Component {
 
   render () {
     return (
-      <Container fluid={true}>
-        <Row>
-          <Breadcrumb>
-            <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-            <Breadcrumb.Item active>Projects</Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
-        <Row>
+      <Container fluid>
+        <Breadcrumb>
+          <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Projects</Breadcrumb.Item>
+        </Breadcrumb>
+        <Row className="controls">
           <h2>Projects</h2>
-        </Row>
-        <Row>
-          <Link to="/projects/create">Create Project</Link>
+          <LinkContainer to="/projects/create"><Button variant="upshot">Create Project</Button></LinkContainer>
         </Row>
         <Row>
           <Table responsive className="table">

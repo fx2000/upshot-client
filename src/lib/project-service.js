@@ -29,7 +29,7 @@ class ProjectService {
       );
   }
 
-  // Update prject
+  // Update project
   update = (project) => {
     const {
       id,

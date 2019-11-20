@@ -58,6 +58,7 @@ class CommentIssue extends Component {
         <Breadcrumb>
           <LinkContainer to = "/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
           <LinkContainer to = "/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to = {'/issues/ + this.props.match.params.id'}><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
           <Breadcrumb.Item active>Post Comment</Breadcrumb.Item>
         </Breadcrumb>
         <Row>

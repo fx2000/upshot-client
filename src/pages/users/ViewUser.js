@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import users from '../../lib/user-service';
 import { withAuth } from '../../lib/AuthProvider';
-import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 // Components

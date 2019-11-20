@@ -45,7 +45,8 @@ class IssueService {
       content,
       project,
       priority,
-      status
+      status,
+      attachments
     } = issue;
     return this.issue
       .put('/api/issues/' + id + '/update', {
@@ -53,7 +54,8 @@ class IssueService {
         content,
         project,
         priority,
-        status
+        status,
+        attachments
       }).then(
         response => response
       );

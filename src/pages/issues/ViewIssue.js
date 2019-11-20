@@ -12,7 +12,8 @@ import {
   Breadcrumb,
   Container,
   Row,
-  Button
+  Button,
+  ButtonGroup
 } from 'react-bootstrap';
 
 class ViewIssue extends Component {
@@ -85,6 +86,7 @@ class ViewIssue extends Component {
         if (issue._id === this.state.issue._id) { assigned = true }
       });
     }
+    console.log(this.state.issue)
     
     return (
       <Container fluid>
@@ -96,7 +98,8 @@ class ViewIssue extends Component {
         <Row className="controls">
           {/* Render buttons according to user's profile */}
           <h2>{this.state.issue.title}</h2>
-          <div>
+
+          <ButtonGroup aria-label="Actions">
             {
               this.state.issue && update ?
                 <LinkContainer to={'/issues/' + this.state.issue._id + '/update'}><Button variant="upshot">Update</Button></LinkContainer> : null
@@ -109,7 +112,7 @@ class ViewIssue extends Component {
               this.state.issue && assigned ?
                 <Button onClick={this.releaseIssue} variant="upshot">Release</Button> : <Button onClick={this.takeoverIssue} variant="upshot">Takeover</Button>
             }
-          </div>
+          </ButtonGroup>
           
         </Row>
         <Row>
@@ -139,7 +142,7 @@ class ViewIssue extends Component {
                 <Container fluid className="issue-details">
                   <Row>
                     <LinkContainer to={'/issues/' + this.state.issue._id + '/comment'}>
-                      <Button>Post New Comment</Button>
+                      <Button variant="upshot">Post New Comment</Button>
                     </LinkContainer>
                   </Row>
                   <Row>

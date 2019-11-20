@@ -130,8 +130,9 @@ class UpdateProject extends Component {
       <Container fluid>
         <Breadcrumb>
           <LinkContainer to="/"><Breadcrumb.Item>Home</Breadcrumb.Item></LinkContainer>
-          <LinkContainer to="/issues"><Breadcrumb.Item>Issues</Breadcrumb.Item></LinkContainer>
-          <Breadcrumb.Item active>Create Project</Breadcrumb.Item>
+          <LinkContainer to="/projects"><Breadcrumb.Item>Projects</Breadcrumb.Item></LinkContainer>
+          <LinkContainer to={'/projects/' + this.state.id}><Breadcrumb.Item>{this.state.name}</Breadcrumb.Item></LinkContainer>
+          <Breadcrumb.Item active>Update Project</Breadcrumb.Item>
         </Breadcrumb>
         <Modal.Dialog>
           <Modal.Header>

@@ -5,7 +5,7 @@ import { withAuth } from '../../lib/AuthProvider';
 const Issue = (props) => {
   return (
     <tr>
-      <td>{ props.priority }</td>
+      <td className="priority">{ props.priority }</td>
       <td>{ props.status }</td>
       <td>{ props.created }</td>
       <td><Link to={'/issues/' + props.id}>{ props.title }</Link></td>

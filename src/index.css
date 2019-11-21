@@ -20,7 +20,7 @@ code {
 
 .sidebar {
   background-color: slategray;
-  min-height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .table {
@@ -98,4 +98,30 @@ code {
 .project-upload {
   max-width: 150px;
   height: auto;
+}
+
+.pie {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.low {
+  color: #66A103;
+}
+
+.medium {
+  color: #FADA5E;
+}
+
+.high {
+  color: #FF9900;
+}
+
+.critical {
+  color: #D92121;
+}
+
+.priority {
+  font-weight: bold;
 }

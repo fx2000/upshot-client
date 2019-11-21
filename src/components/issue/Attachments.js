@@ -17,7 +17,7 @@ const Attachments = (props) => {
       <img src={props.attachment} alt="Attachment" onClick={handleShow} />
 
       <Modal
-        size="lg"
+        size="md"
         show={lgShow}
         onHide={handleClose}
       >

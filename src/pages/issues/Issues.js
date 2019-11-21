@@ -22,6 +22,7 @@ class Issues extends Component {
   }
 
   componentDidMount () {
+    // Call issues list API
     issues.list().then(
       response => {
         const issues = response.data;

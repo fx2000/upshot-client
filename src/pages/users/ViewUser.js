@@ -182,6 +182,7 @@ class ViewUser extends Component {
                               <UserComments
                                 key = { index }
                                 id = { comment._id }
+                                issueId = { comment.issue._id }
                                 issue = { comment.issue.title }
                                 comment = {comment.content}
                                 posted = { comment.relativeDate }

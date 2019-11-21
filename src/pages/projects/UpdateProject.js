@@ -28,10 +28,10 @@ class UpdateProject extends Component {
       isUploading: '',
       errors: ''
     };
-  }
+  };
 
   // Form submit handler
-  handleFormSubmit = (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
     const {
       id,
@@ -47,7 +47,7 @@ class UpdateProject extends Component {
       }
     }
 
-    projects.update({
+    await projects.update({
       id,
       name,
       description,
@@ -59,15 +59,14 @@ class UpdateProject extends Component {
       description: '',
       imageURL: ''
     });
-    // TODO: Fix redirect so it refreshes
     this.props.history.push('/projects')
-  }
+  };
 
   // Form change handler
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   // Upload file handler
   handleUploadStart = () => this.setState({

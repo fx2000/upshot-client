@@ -7,10 +7,10 @@ const Issue = (props) => {
     <tr>
       <td>{ props.priority }</td>
       <td>{ props.status }</td>
+      <td>{ props.created }</td>
       <td><Link to={'/issues/' + props.id}>{ props.title }</Link></td>
       <td>{ props.description }</td>
       <td><Link to={'/projects/' + props.projectId}>{ props.projectName }</Link></td>
-      <td><Link to={'/users/' + props.creatorId}>{ props.creatorName }</Link></td>
       <td>{ props.followers }</td>
       <td>{ props.comments }</td>
     </tr>

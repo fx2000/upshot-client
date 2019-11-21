@@ -64,9 +64,14 @@ code {
   padding: .5rem 1rem 0 1rem;
 }
 
-.attachment>img {
+.attachments {
+  margin-top: 30px;
+}
+
+.attachments>img {
   max-height: 100px;
-  max-width: auto;
+  width: auto;
+  padding: 30px;
 }
 
 .brand-name {

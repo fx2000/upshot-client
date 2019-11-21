@@ -30,12 +30,12 @@ class CreateIssue extends Component {
       isUploading: false,
       uploadProgress: 0,
       errors: '',
-      projects: [],
+      projects: []
     };
   }
 
   // Form submit handler
-  handleFormSubmit = (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
     const {
       title,
@@ -45,7 +45,7 @@ class CreateIssue extends Component {
       attachments
     } = this.state;
 
-    issues.create({
+    await issues.create({
       title,
       content,
       project,
@@ -62,9 +62,9 @@ class CreateIssue extends Component {
       attachments: [],
       isUploading: false,
       uploadProgress: 0,
-      errors: ''
+      errors: '',
+      redirect: true
     });
-    // TODO: Fix redirect so it refreshes
     this.props.history.push('/issues');
   }
 
@@ -171,17 +171,20 @@ class CreateIssue extends Component {
                 <Form.Group controlId="project">
                   <Form.Label>Project</Form.Label>
                   <Form.Control as="select" onChange={this.handleChange} name="project" value={this.props.match.params.id} required>
+                      <option disabled selected value>Select Project</option>
                     {
-                      this.state.projects && this.state.projects.map(project => (
+                      this.state.projects &&
+                      this.state.projects.map(project => (
                         <option value={project._id} key={project._id}>{project.name}</option>
                       ))
                     }
                   </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId = "priority">
+                <Form.Group controlId="priority">
                   <Form.Label>Priority</Form.Label>
                   <Form.Control as="select" onChange={this.handleChange} name="priority" required>
+                    <option disabled selected value>Select a Priority</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>

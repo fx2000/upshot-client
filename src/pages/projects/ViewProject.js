@@ -15,7 +15,8 @@ import {
   Container,
   Row,
   Button,
-  Table
+  Table,
+  ButtonGroup
 } from 'react-bootstrap';
 
 class ViewProject extends Component {
@@ -57,17 +58,17 @@ class ViewProject extends Component {
         </Breadcrumb>
         <Row className="controls">
           <h2>{this.state.project.name}</h2>
-          <div>
+          <ButtonGroup aria-label="Actions">
             {
               this.state.project && update ?
                 <LinkContainer to={'/projects/' + this.state.project._id + '/update'}><Button variant="upshot">Update</Button></LinkContainer> : null
             }
             {
-              // TODO: Add a confirmation message when deleting a record
+              // TODO: Add a confirmation message before deleting a record
               this.state.project && update ?
-                <Button variant="danger" onClick={() => projects.delete(this.state.project._id)}>Delete</Button> : null
+                <Button variant="danger" onClick={() => projects.delete(this.props.match.params.id)}>Delete</Button> : null
             }
-          </div>
+          </ButtonGroup>
         </Row>
         <Row>
           <Container fluid>

@@ -45,15 +45,15 @@ class Issues extends Component {
         </Row>
         <Row>
           { /* Add "Assigned To" column */}
-          <Table responsive className="table">
+          <Table responsive className="table" striped hover>
             <thead>
               <tr>
                 <th>Priority</th>
                 <th>Status</th>
+                <th>Created</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Project</th>
-                <th>Creator</th>
                 <th>Followers</th>
                 <th>Comments</th>
               </tr>
@@ -67,6 +67,7 @@ class Issues extends Component {
                     priority = { issue.priority }
                     status = {issue.status}
                     title = { issue.title }
+                    created = { issue.relativeDate }
                     description = { issue.content }
                     projectId = { issue.project._id }
                     projectName = { issue.project.name }

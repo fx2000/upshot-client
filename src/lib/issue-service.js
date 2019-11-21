@@ -62,8 +62,7 @@ class IssueService {
   }
 
   // Delete issue
-  delete = (issue) => {
-    const { id } = issue;
+  delete = (id) => {
     return this.issue.get('/api/issues/' + id + '/delete').then(
       response => response
     );

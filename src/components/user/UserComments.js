@@ -1,12 +1,13 @@
 import React from 'react';
 import { withAuth } from '../../lib/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const UserComments = (props) => {
   return (
     <tr>
-      <td>{ props.issue }</td>
-      <td>{ props.content }</td>
-      <td>{ props.relativeDate }</td>
+      <td><Link to={ '/issues/' + props.issueId }>{ props.issue }</Link></td>
+      <td>{ props.comment }</td>
+      <td>{ props.posted }</td>
     </tr>
   );
 };

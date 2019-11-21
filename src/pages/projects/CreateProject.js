@@ -30,14 +30,15 @@ class CreateProject extends Component {
   }
 
   // Form submit handler
-  handleFormSubmit = (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
     const {
       name,
       description,
       imageURL
     } = this.state;
-    projects.create({
+    
+    await projects.create({
       name,
       description,
       imageURL
@@ -47,7 +48,6 @@ class CreateProject extends Component {
       name: '',
       description: ''
     });
-    // TODO: Fix redirect so it refreshes
     this.props.history.push('/projects')
   }
 

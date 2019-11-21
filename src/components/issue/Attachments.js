@@ -3,7 +3,8 @@ import React, { useState } from "react";
 // Bootstrap Components
 import {
   Modal,
-  Button
+  Button,
+  Image
 } from 'react-bootstrap';
 
 const Attachments = (props) => {
@@ -24,7 +25,7 @@ const Attachments = (props) => {
           <Modal.Title>Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src={props.attachment} alt="Attachment" onClick={handleShow} />
+          <Image src={props.attachment} alt="Attachment" onClick={handleShow} fluid />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -37,7 +37,7 @@ class UpdateIssue extends Component {
   }
 
   // Form submit handler
-  handleFormSubmit = (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
     const {
       id,
@@ -49,7 +49,7 @@ class UpdateIssue extends Component {
       attachments
     } = this.state;
 
-    issues.update({
+    await issues.update({
       id,
       title,
       content,
@@ -67,7 +67,6 @@ class UpdateIssue extends Component {
       status: '',
       attachments: ''
     });
-    // TODO: Fix redirect so it refreshes
     this.props.history.push('/issues/' + this.state.id);
   }
 

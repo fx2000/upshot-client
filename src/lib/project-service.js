@@ -48,8 +48,7 @@ class ProjectService {
   }
 
   // Delete project
-  delete = (project) => {
-    const { id } = project;
+  delete = (id) => {
     return this.project.get('/api/projects/' + id + '/delete').then(
       response => response
     );
